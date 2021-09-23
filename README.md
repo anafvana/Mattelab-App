@@ -1,7 +1,9 @@
-# DAVE3600-Mappeeksamen1-Mattelab
-Simple Android application consisting of a Maths game, including statistics and customisable settings.
+# DAVE3600 Apputvikling - Mappeeksamen1: Mattelab
+Simple Android application consisting of a Maths game for children, including statistics and customisable settings.
 
-Mappe 1 Apputvikling 2021
+First deliverable assignment for DAVE3600 - App Development.
+
+## Mappe 1 Apputvikling 2021
 
 Dere skal lage en matteopplærings-app. 
 
