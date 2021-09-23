@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MathLab</string>
+    <string name="str_main_play">Play game</string>
+    <string name="str_main_stats">Statistics</string>
+    <string name="str_main_prefs">Preferences</string>
+    <string name="str_play_answer">Your answer…</string>
+    <string-array name="strarr_prefs_langs">
+        <item>English</item>
+        <item>Norwegian (Norsk Bokmål)</item>
+        <item>German (Deutsch)</item>
+    </string-array>
+    <string name="str_prefs_lang">Language</string>
+    <string name="str_prefs_gamenr">Number of rounds:</string>
+</resources>

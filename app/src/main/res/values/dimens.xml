@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="marg_btn">15dp</dimen>
+    <dimen name="txt_size_600">20sp</dimen>
+    <dimen name="txt_size_800">30sp</dimen>
+    <dimen name="txt_size_850">35sp</dimen>
+</resources>

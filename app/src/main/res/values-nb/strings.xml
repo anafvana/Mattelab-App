@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MatteLab</string>
+    <string name="str_main_play">Spill</string>
+    <string name="str_main_stats">Statistikk</string>
+    <string name="str_main_prefs">Preferanser</string>
+    <string name="str_play_answer">Ditt svar…</string>
+    <string-array name="strarr_prefs_langs">
+        <item>Norsk Bokmål</item>
+        <item>Engelsk (English)</item>
+        <item>Tysk (Deutsch)</item>
+    </string-array>
+    <string name="str_prefs_lang">Språk:</string>
+    <string name="str_prefs_gamenr">Antall runder:</string>
+</resources>
