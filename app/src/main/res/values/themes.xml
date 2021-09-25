@@ -13,4 +13,7 @@
         <item name="android:textColorSecondary">@color/red_500</item>
         <item name="android:textColorTertiary">@color/black</item>
     </style>
+
+    <!--Placeholder for versions under 23; assures parent theme will be used-->
+    <style name="PreferenceScreen" parent="Theme.MatteLab"/>
 </resources>
