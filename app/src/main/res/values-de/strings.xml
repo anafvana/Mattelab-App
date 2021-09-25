@@ -1,0 +1,56 @@
+<resources>
+    <!--N.B: Credits for translation go to MateTranslate. I do not speak German.-->
+
+    <!--GENERAL-->
+    <string name="app_name">MatheLab</string>
+    <!--Dialog questions-->
+    <string name="str_dialog_exitgame">Spiel verlassen?\n(Fortschritt geht verloren)</string>
+    <string name="str_dialog_erasequest">Möchten Sie wirklich alle Statistiken LÖSCHEN?</string>
+    <string name="str_dialog_errorquest">Möchten Sie dieses Spiel zu Ihrer Statistik hinzufügen?</string>
+    <!--Dialog answers-->
+    <string name="str_dialog_yes">Ja</string>
+    <string name="str_dialog_no">Nein</string>
+    <string name="str_dialog_cancel">Abbrechen</string>
+    <string name="str_dialog_quit">Aufhören</string>
+    <string name="str_dialog_close">Schließen</string>
+    <string name="str_dialog_erase_literally">Löschen</string>
+    <!--Dialog utils-->
+    <string name="str_dialog_goodresults">Gut gemacht!</string>
+    <string name="str_dialog_badresults">Weiter versuchen!</string>
+    <string name="str_dialog_error">Ach nein! Wir haben keine Fragen.</string>
+    <string name="str_dialog_answers_literally">Antworten</string>
+
+    <!--MAIN PAGE-->
+    <string name="str_main_play">Spiel</string>
+    <string name="str_main_stats">Statistiken</string>
+    <string name="str_main_prefs">Einstellungen</string>
+
+    <!--PLAY PAGE-->
+    <string name="str_play_answer">Ihre Antwort…</string>
+    <string name="str_play_right">Rechts</string>
+    <string name="str_play_wrong">Falsch</string>
+
+    <!--STATISTICS PAGE-->
+    <string name="str_stats_games">Gesamtzahl der gespielten Spiele</string>
+    <string name="str_stats_won">Gewonnene Spiele</string>
+    <string name="str_stats_lost">Spiele verloren</string>
+    <string name="str_stats_right">Richtige Antworten</string>
+    <string name="str_stats_wrong">Falsche Antworten</string>
+    <string name="str_stats_erase">Statistiken löschen</string>
+
+    <!--PREFERENCES PAGE-->
+    <string name="str_prefs_gen">Allgemein</string>
+    <string name="str_prefs_lang">Sprache</string>
+    <string-array name="strarr_prefs_langs">
+        <item>Englisch (English)</item>
+        <item>Norwegisch (Norsk Bokmål)</item>
+        <item>Deutsch</item>
+    </string-array>
+    <string-array translatable="false" name="strarr_prefs_langvals">
+        <item>en</item>
+        <item>nb</item>
+        <item>de</item>
+    </string-array>
+    <string name="str_prefs_game">Spielweise</string>
+    <string name="str_prefs_gamenr">Anzahl Runden</string>
+</resources>
