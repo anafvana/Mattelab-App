@@ -11,7 +11,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceManager;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EmptyStackException;
 import java.util.Objects;
@@ -126,7 +125,7 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
     /*------- AUXILIARY METHODS -------*/
 
     // Set number of rounds to be played based on preferences
-    public void setRounds() {
+    private void setRounds() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         try {
             String selectedRounds = preferences.getString("ROUNDS", "") ;
@@ -140,7 +139,7 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
     }
 
     // Loads operations from resources into array
-    public void loadOperations() {
+    private void loadOperations() {
         String[] inOps = getResources().getStringArray(R.array.arr_play_ops);
         for (String inOp : inOps) {
             String[] op = inOp.split("=");
@@ -149,7 +148,7 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
     }
 
     // Displays next operation (or an alert, if out of operations)
-    public void nextOperation(){
+    private void nextOperation(){
         try {
             Collections.shuffle(operations);
             String[] op = operations.pop();
@@ -165,13 +164,13 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
     }
 
     // Adds selected digit to answer string
-    public void addToAnswer(int nr){
+    private void addToAnswer(int nr){
         answer += nr;
         setAnswer();
     }
 
     // Removes last digit from answer string
-    public void removeFromAnswer(){
+    private void removeFromAnswer(){
         if (answer.length() > 0) {
             int max = answer.length() - 1;
             answer = answer.substring(0,max);
@@ -179,14 +178,14 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
         }
     }
 
-    public void setAnswer(){
+    private void setAnswer(){
         TextView txt = (TextView) findViewById(R.id.txt_play_answer);
         txt.setText(answer);
         txt.setAlpha((float) 1);
     }
 
     // Checks if answer is correct
-    public void checkAnswer(){
+    private void checkAnswer(){
         if (answer.equals(result)) {
             rights++;
         } else {
@@ -209,7 +208,7 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
     }
 
     // Puts current score values on screen
-    public void setScore(){
+    private void setScore(){
         TextView r = (TextView) findViewById(R.id.txt_play_rights);
         r.setText(String.valueOf(rights));
 
@@ -218,7 +217,7 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
     }
 
     // Updates statistics in persistent memory
-    public void updateStats(){
+    private void updateStats(){
         int gamesPlayed = getSharedPreferences("STATISTICS", MODE_PRIVATE).getInt("PLAYED", 0 );
         int gamesWithOver50Percent = getSharedPreferences("STATISTICS", MODE_PRIVATE).getInt("WON", 0);
         int gamesWithUnder50Percent = getSharedPreferences("STATISTICS", MODE_PRIVATE).getInt("LOST", 0);

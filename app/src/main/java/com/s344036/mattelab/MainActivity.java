@@ -2,14 +2,10 @@ package com.s344036.mattelab;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 
@@ -25,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         // Initialises app and sets correct language
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setAppLocale();
+        Utils.setAppLocale(this);
 
         // Sets toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
@@ -67,28 +63,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        setAppLocale();
+        Utils.setAppLocale(this);
     }
 
     /*------- AUXILIARY METHODS -------*/
-
-    // Sets appLocale as the one previously chosen by the user
-    private void setAppLocale() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        String selectedLocale = preferences.getString("LANG", "");
-
-        if (selectedLocale != null) {
-            // If current locale is not the same as the one saved in preferences, change and recreate
-            if(!getResources().getConfiguration().locale.toString().equals(selectedLocale)){
-                Resources resources = getResources();
-                DisplayMetrics dm = resources.getDisplayMetrics();
-                Configuration conf = resources.getConfiguration();
-                conf.setLocale(new Locale(selectedLocale));
-                resources.updateConfiguration(conf, dm);
-                recreate();
-            }
-        }
-    }
 
     // Initialises statistics, if do not exist
     private void initStats(){
