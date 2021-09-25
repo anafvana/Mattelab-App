@@ -5,10 +5,6 @@
     <color name="red_500">#ea4947</color>
     <color name="red_800">#A80A08</color>
 
-    <color name="teal_500">#0f7072</color>
-    <color name="teal_800">#03292a</color>
-    <color name="teal_900">#021e20</color>
-
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>
