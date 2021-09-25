@@ -30,19 +30,22 @@ public class Preferences extends PreferenceFragmentCompat implements SharedPrefe
         addPreferencesFromResource(R.xml.preferences);
     }
 
+    // Preference listener for automatic reload on preference change
     @Override
     public void onResume() {
         super.onResume();
         getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
+    // Removes preference change listener and ensures reload
     @Override
     public void onPause() {
         getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
         super.onPause();
     }
 
-    public void setAppLocale(String selectedLocale) {
+    // Sets application language
+    private void setAppLocale(String selectedLocale) {
         Resources resources = getResources();
         DisplayMetrics dm = resources.getDisplayMetrics();
         Configuration conf = resources.getConfiguration();

@@ -51,7 +51,7 @@ public class CompletedDialog extends DialogFragment {
         }).setMessage(results).create();
     }
 
-    public String str(int id) {
+    private String str(int id) {
         return getResources().getString(id);
     }
 

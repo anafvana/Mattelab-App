@@ -18,6 +18,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
+    /*------- OVERRIDES -------*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Sets initial values for statistics, in case they do not exist
         initStats();
     }
 
@@ -68,13 +70,10 @@ public class MainActivity extends AppCompatActivity {
         setAppLocale();
     }
 
-    public void newActivity(Class c){
-        Intent intent = new Intent(this, c);
-        startActivity(intent);
-    }
+    /*------- AUXILIARY METHODS -------*/
 
     // Sets appLocale as the one previously chosen by the user
-    public void setAppLocale() {
+    private void setAppLocale() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         String selectedLocale = preferences.getString("LANG", "");
 
@@ -91,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void initStats(){
+    // Initialises statistics, if do not exist
+    private void initStats(){
         SharedPreferences stats = getSharedPreferences("STATISTICS", MODE_PRIVATE);
         if (!((stats.contains("PLAYED") && stats.contains("WON") && stats.contains("LOST") && stats.contains("RIGHTOP") && stats.contains("WRONGOP")))) {
             stats.edit().putInt("PLAYED", 0 ).apply();
@@ -100,5 +100,11 @@ public class MainActivity extends AppCompatActivity {
             stats.edit().putInt("RIGHTOP", 0).apply();
             stats.edit().putInt("WRONGOP",0).apply();
         }
+    }
+
+    // Auxiliary method for DRY: creation of new activity
+    private void newActivity(Class c){
+        Intent intent = new Intent(this, c);
+        startActivity(intent);
     }
 }

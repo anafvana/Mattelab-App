@@ -16,6 +16,7 @@ import androidx.preference.PreferenceManager;
 import java.util.Locale;
 
 public class PreferencesActivity extends AppCompatActivity {
+    /*------- OVERRIDES -------*/
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,7 @@ public class PreferencesActivity extends AppCompatActivity {
         setAppLocale();
     }
 
+    // Starts new main activity, with updated language settings (Main Activity finished when PreferencesActivity is started)
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
@@ -43,7 +45,8 @@ public class PreferencesActivity extends AppCompatActivity {
         finish();
     }
 
-    public void setAppLocale() {
+    // Sets application language
+    private void setAppLocale() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         String selectedLocale = preferences.getString("LANG", "");
 

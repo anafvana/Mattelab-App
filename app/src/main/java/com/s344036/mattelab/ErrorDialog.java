@@ -12,9 +12,19 @@ import androidx.fragment.app.DialogFragment;
 public class ErrorDialog extends DialogFragment {
     private DialogClickListener callback;
 
+    // Number of rights and wrongs for display on message
+    private final int right;
+    private final int wrong;
+
+    // Custom constructor to require rights/wrongs information
+    public ErrorDialog(int right, int wrong){
+        this.right = right;
+        this.wrong = wrong;
+    }
+
     public interface DialogClickListener{
-        public void onYesClick();
-        public void onNoClick();
+        void onYesClick();
+        void onNoClick();
     }
 
     @Override
@@ -30,6 +40,10 @@ public class ErrorDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        String msg = str(R.string.str_play_right) + " " + str(R.string.str_dialog_answers_literally) + ": " + right + "\n" +
+                str(R.string.str_play_wrong) + " " + str(R.string.str_dialog_answers_literally) + ": " + wrong + "\n\n" +
+                str(R.string.str_dialog_errorquest);
+
         return new AlertDialog.Builder(getActivity()).setTitle(R.string.str_dialog_error).setPositiveButton(R.string.str_dialog_yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -40,6 +54,11 @@ public class ErrorDialog extends DialogFragment {
             public void onClick(DialogInterface dialogInterface, int i) {
                 callback.onNoClick();
             }
-        }).setMessage(R.string.str_dialog_errorquest).create();
+        }).setMessage(msg).create();
     }
+
+    private String str(int id) {
+        return getResources().getString(id);
+    }
+
 }

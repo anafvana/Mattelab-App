@@ -13,8 +13,8 @@ public class ExitDialog extends DialogFragment {
     private DialogClickListener callback;
 
     public interface DialogClickListener{
-        public void onQuitClick();
-        public void onCancelClick();
+        void onQuitClick();
+        void onCancelClick();
     }
 
     @Override
