@@ -1,4 +1,4 @@
-package com.example.mattelab;
+package com.s344036.mattelab;
 
 import android.content.Context;
 

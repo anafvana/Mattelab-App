@@ -1,8 +1,6 @@
-package com.example.mattelab;
+package com.s344036.mattelab;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
