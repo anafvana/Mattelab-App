@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        initStats();
     }
 
     @Override
@@ -86,6 +88,17 @@ public class MainActivity extends AppCompatActivity {
                 resources.updateConfiguration(conf, dm);
                 recreate();
             }
+        }
+    }
+
+    public void initStats(){
+        SharedPreferences stats = getSharedPreferences("STATISTICS", MODE_PRIVATE);
+        if (!((stats.contains("PLAYED") && stats.contains("WON") && stats.contains("LOST") && stats.contains("RIGHTOP") && stats.contains("WRONGOP")))) {
+            stats.edit().putInt("PLAYED", 0 ).apply();
+            stats.edit().putInt("WON", 0).apply();
+            stats.edit().putInt("LOST", 0).apply();
+            stats.edit().putInt("RIGHTOP", 0).apply();
+            stats.edit().putInt("WRONGOP",0).apply();
         }
     }
 }

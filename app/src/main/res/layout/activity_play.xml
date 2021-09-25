@@ -52,8 +52,7 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/marg_300"
                 android:textSize="@dimen/txt_size_550"
-                android:drawableEnd="@drawable/yes"
-                />
+                app:drawableEndCompat="@drawable/yes" />
 
         </LinearLayout>
 
@@ -79,8 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/txt_size_550"
-                android:drawableEnd="@drawable/no"
-                />
+                app:drawableEndCompat="@drawable/no" />
 
         </LinearLayout>
     </LinearLayout>

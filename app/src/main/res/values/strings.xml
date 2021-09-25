@@ -1,22 +1,42 @@
 <resources>
+    <!--GENERAL-->
     <string name="app_name">MathLab</string>
+    <!--Dialog questions-->
+    <string name="str_dialog_exitgame">Quit game?\n(Progress will be lost)</string>
+    <string name="str_dialog_erasequest">Are you sure you want to ERASE all statistics?</string>
+    <string name="str_dialog_errorquest">Do you want to add this game to your statistics?</string>
+    <!--Dialog answers-->
+    <string name="str_dialog_yes">Yes</string>
+    <string name="str_dialog_no">No</string>
+    <string name="str_dialog_cancel">Cancel</string>
+    <string name="str_dialog_quit">Quit</string>
+    <string name="str_dialog_close">Close</string>
+    <string name="str_dialog_erase_literally">Erase</string>
+    <!--Dialog utils-->
+    <string name="str_dialog_goodresults">Good job!</string>
+    <string name="str_dialog_badresults">Keep trying!</string>
+    <string name="str_dialog_error">Oh no! We are out of questions.</string>
+    <string name="str_dialog_answers_literally">answers</string>
+
+    <!--MAIN PAGE-->
     <string name="str_main_play">Play game</string>
     <string name="str_main_stats">Statistics</string>
     <string name="str_main_prefs">Preferences</string>
 
+    <!--PLAY PAGE-->
     <string name="str_play_answer">Your answer…</string>
     <string name="str_play_right">Right</string>
     <string name="str_play_wrong">Wrong</string>
 
-    <string name="str_dialog_exitgame">Quit game?\n
-        (Progress will be lost)</string>
-    <string name="str_dialog_quit">Quit</string>
-    <string name="str_dialog_cancel">Cancel</string>
-    <string name="str_dialog_goodresults">Good job!</string>
-    <string name="str_dialog_badresults">Keep trying!</string>
-    <string name="str_dialog_close">Close</string>
-    <string name="str_dialog_answers_literally">answers</string>
+    <!--STATISTICS PAGE-->
+    <string name="str_stats_games">Total games played</string>
+    <string name="str_stats_won">Games won</string>
+    <string name="str_stats_lost">Games lost</string>
+    <string name="str_stats_right">Right answers</string>
+    <string name="str_stats_wrong">Wrong answers</string>
+    <string name="str_stats_erase">Erase statistics</string>
 
+    <!--PREFERENCES PAGE-->
     <string name="str_prefs_gen">General</string>
     <string name="str_prefs_lang">Language</string>
     <string-array name="strarr_prefs_langs">

@@ -9,12 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-public class ExitDialog extends DialogFragment {
+public class ErrorDialog extends DialogFragment {
     private DialogClickListener callback;
 
     public interface DialogClickListener{
-        public void onQuitClick();
-        public void onCancelClick();
+        public void onYesClick();
+        public void onNoClick();
     }
 
     @Override
@@ -30,16 +30,16 @@ public class ExitDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        return new AlertDialog.Builder(getActivity()).setTitle(R.string.str_dialog_exitgame).setPositiveButton(R.string.str_dialog_quit, new DialogInterface.OnClickListener() {
+        return new AlertDialog.Builder(getActivity()).setTitle(R.string.str_dialog_error).setPositiveButton(R.string.str_dialog_yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                callback.onQuitClick();
+                callback.onYesClick();
             }
-        }).setNegativeButton(R.string.str_dialog_cancel, new DialogInterface.OnClickListener() {
+        }).setNegativeButton(R.string.str_dialog_no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                callback.onCancelClick();
+                callback.onNoClick();
             }
-        }).create();
+        }).setMessage(R.string.str_dialog_errorquest).create();
     }
 }

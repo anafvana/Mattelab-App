@@ -5,6 +5,7 @@
     <dimen name="marg_700">30dp</dimen>
     <dimen name="txt_size_550">17.5sp</dimen>
     <dimen name="txt_size_600">20sp</dimen>
+    <dimen name="txt_size_700">25sp</dimen>
     <dimen name="txt_size_800">30sp</dimen>
     <dimen name="txt_size_850">35sp</dimen>
 </resources>

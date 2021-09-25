@@ -23,5 +23,6 @@ String arrays that require translation are found under strings.xml-->
         <item>18 + 4=22</item>
         <item>6 * 5=30</item>
         <item>16 - 10=6</item>
+        <item>22 / 11=2</item>
     </string-array>
 </resources>
