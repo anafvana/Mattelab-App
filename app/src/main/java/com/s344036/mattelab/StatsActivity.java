@@ -2,7 +2,6 @@ package com.s344036.mattelab;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,8 +9,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.button.MaterialButton;
-
-import java.text.DecimalFormat;
 
 public class StatsActivity extends AppCompatActivity implements EraseDialog.DialogClickListener {
     int gamesPlayed = 0;
@@ -44,6 +41,12 @@ public class StatsActivity extends AppCompatActivity implements EraseDialog.Dial
 
         // Update stats from persistent memory
         getStats();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Utils.setAppLocale(this);
     }
 
     /*------- AUXILIARY METHODS -------*/
