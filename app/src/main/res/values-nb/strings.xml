@@ -1,14 +1,30 @@
 <resources>
     <string name="app_name">MatteLab</string>
+
     <string name="str_main_play">Spill</string>
     <string name="str_main_stats">Statistikk</string>
     <string name="str_main_prefs">Preferanser</string>
+
     <string name="str_play_answer">Ditt svar…</string>
+    <string name="str_play_right">Riktige</string>
+    <string name="str_play_wrong">Gale</string>
+
+    <string name="str_dialog_exitgame">Avslutt spill?\n
+        (Rund vil gå tapt)</string>
+    <string name="str_dialog_quit">Avslutt</string>
+    <string name="str_dialog_cancel">Avbrytt</string>
+    <string name="str_dialog_goodresults">Bra jobb!</string>
+    <string name="str_dialog_badresults">Skal vi øve litt mer?</string>
+    <string name="str_dialog_close">Lukk</string>
+    <string name="str_dialog_answers_literally">svar</string>
+
+    <string name="str_prefs_gen">Generell</string>
+    <string name="str_prefs_lang">Språk</string>
     <string-array name="strarr_prefs_langs">
-        <item>Norsk Bokmål</item>
         <item>Engelsk (English)</item>
+        <item>Norsk Bokmål</item>
         <item>Tysk (Deutsch)</item>
     </string-array>
-    <string name="str_prefs_lang">Språk:</string>
-    <string name="str_prefs_gamenr">Antall runder:</string>
+    <string name="str_prefs_game">Spill</string>
+    <string name="str_prefs_gamenr">Antall runder</string>
 </resources>

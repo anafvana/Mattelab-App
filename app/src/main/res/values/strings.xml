@@ -3,12 +3,32 @@
     <string name="str_main_play">Play game</string>
     <string name="str_main_stats">Statistics</string>
     <string name="str_main_prefs">Preferences</string>
+
     <string name="str_play_answer">Your answer…</string>
+    <string name="str_play_right">Right</string>
+    <string name="str_play_wrong">Wrong</string>
+
+    <string name="str_dialog_exitgame">Quit game?\n
+        (Progress will be lost)</string>
+    <string name="str_dialog_quit">Quit</string>
+    <string name="str_dialog_cancel">Cancel</string>
+    <string name="str_dialog_goodresults">Good job!</string>
+    <string name="str_dialog_badresults">Keep trying!</string>
+    <string name="str_dialog_close">Close</string>
+    <string name="str_dialog_answers_literally">answers</string>
+
+    <string name="str_prefs_gen">General</string>
+    <string name="str_prefs_lang">Language</string>
     <string-array name="strarr_prefs_langs">
         <item>English</item>
         <item>Norwegian (Norsk Bokmål)</item>
         <item>German (Deutsch)</item>
     </string-array>
-    <string name="str_prefs_lang">Language</string>
-    <string name="str_prefs_gamenr">Number of rounds:</string>
+    <string-array translatable="false" name="strarr_prefs_langvals">
+        <item>en</item>
+        <item>nb</item>
+        <item>de</item>
+    </string-array>
+    <string name="str_prefs_game">Gameplay</string>
+    <string name="str_prefs_gamenr">Number of rounds</string>
 </resources>

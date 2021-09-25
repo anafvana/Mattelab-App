@@ -9,13 +9,20 @@
     tools:context=".MainActivity"
     >
 
-    <Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
-        android:titleTextColor="@color/white"
-        />
+        >
+        <TextView
+            android:text="@string/app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            />
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +36,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/str_main_play"
-            android:layout_marginBottom="@dimen/marg_btn"
+            android:textSize="@dimen/txt_size_600"
+            android:padding="@dimen/marg_500"
+            android:layout_marginBottom="@dimen/marg_500"
         />
 
         <LinearLayout
@@ -43,8 +52,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_main_stats"
-                android:layout_marginTop="@dimen/marg_btn"
-                android:layout_marginRight="@dimen/marg_btn"
+                android:textSize="@dimen/txt_size_600"
+                android:padding="@dimen/marg_500"
+                android:layout_marginTop="@dimen/marg_500"
+                android:layout_marginRight="@dimen/marg_500"
                 />
 
             <Button
@@ -52,8 +63,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_main_prefs"
-                android:layout_marginTop="@dimen/marg_btn"
-                android:layout_marginLeft="@dimen/marg_btn"
+                android:textSize="@dimen/txt_size_600"
+                android:padding="@dimen/marg_500"
+                android:layout_marginTop="@dimen/marg_500"
+                android:layout_marginLeft="@dimen/marg_500"
                 />
         </LinearLayout>
     </LinearLayout>

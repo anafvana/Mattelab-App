@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory app:title="@string/str_prefs_gen"
+        >
+        <ListPreference
+            app:key="LANG"
+            app:title="@string/str_prefs_lang"
+            app:entries="@array/strarr_prefs_langs"
+            app:entryValues="@array/strarr_prefs_langvals"
+            />
+    </PreferenceCategory>
+    <PreferenceCategory app:title="@string/str_prefs_game">
+        <ListPreference
+            app:key="ROUNDS"
+            app:title="@string/str_prefs_gamenr"
+            app:entries="@array/strarr_prefs_rounds"
+            app:entryValues="@array/strarr_prefs_rounds"
+            />
+    </PreferenceCategory>
+</PreferenceScreen>

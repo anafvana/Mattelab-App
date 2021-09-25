@@ -1,19 +1,43 @@
 package com.example.mattelab;
 
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
+import androidx.preference.PreferenceManager;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.Stack;
 
-public class PlayActivity extends AppCompatActivity {
-    String answer = "";
+public class PlayActivity extends AppCompatActivity implements ExitDialog.DialogClickListener, CompletedDialog.DialogClickListener {
+    int rounds = 5;
+    Stack<String[]> operations = new Stack<>();
+
+    String result; // Current operation's result
+    String answer = ""; // Answer input by user
+
+    int rights = 0;
+    int wrongs = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,15 +48,7 @@ public class PlayActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_play);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
-        Log.d("TAG", "Test");
-        // Adds listener to back button on top bar (finish activity)
-        ImageView imageView = (ImageView) findViewById(R.id.img_play_back);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+
 
         // Adds listener for each of the number buttons
         for (int i = 0; i<=9; i++){
@@ -52,7 +68,7 @@ public class PlayActivity extends AppCompatActivity {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO Include method that checks answer and "exports" it
+                checkAnswer();
             }
         });
 
@@ -64,6 +80,43 @@ public class PlayActivity extends AppCompatActivity {
                 removeFromAnswer();
             }
         });
+
+        setRounds();
+        loadOperations();
+        nextOperation();
+        setScore();
+    }
+
+    public void setRounds() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        try {
+            String selectedRounds = preferences.getString("ROUNDS", "") ;
+            rounds = Integer.parseInt(selectedRounds);
+        } catch (Exception e) {
+            // Do nothing. Standard is set to
+            if (preferences.getString("ROUNDS", "") == null){
+                preferences.edit().putString("ROUNDS", "5").apply();
+            }
+        }
+    }
+
+    public void loadOperations() {
+        String[] inOps = getResources().getStringArray(R.array.arr_play_ops);
+        for (String inOp : inOps) {
+            String[] op = inOp.split("=");
+            operations.add(op);
+        }
+    }
+
+    public void nextOperation(){
+        Collections.shuffle(operations);
+
+        String[] op = operations.pop();
+
+        TextView txt = (TextView) findViewById(R.id.txt_play_question);
+        txt.setText(op[0]);
+
+        result = op[1];
     }
 
     // Adds selected digit to answer string
@@ -71,6 +124,7 @@ public class PlayActivity extends AppCompatActivity {
         answer += nr;
         TextView txt = (TextView) findViewById(R.id.txt_play_answer);
         txt.setText(answer);
+        txt.setAlpha((float) 1);
     }
 
     // Removes last digit from answer string
@@ -84,13 +138,53 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     // Checks if answer is correct
-    public boolean checkAnswer(){
-        try {
-            int inAnswer = Integer.parseInt(answer);
-            return false;
-        } catch (NumberFormatException e){
-            //Do something
-            return false;
+    public void checkAnswer(){
+        if (answer.equals(result)) {
+            rights++;
+        } else {
+            wrongs++;
         }
+        setScore();
+
+        if (rounds > 1) {
+            answer = "";
+            TextView txt = (TextView) findViewById(R.id.txt_play_answer);
+            txt.setText(R.string.str_play_answer);
+            txt.setAlpha((float) 0.5);
+            rounds--;
+            nextOperation();
+        } else {
+            DialogFragment dialog = new CompletedDialog(rights, wrongs, this);
+            dialog.show(getSupportFragmentManager(), "Completed");
+
+        }
+    }
+
+    public void setScore(){
+        TextView r = (TextView) findViewById(R.id.txt_play_rights);
+        r.setText(String.valueOf(rights));
+
+        TextView w = (TextView) findViewById(R.id.txt_play_wrongs);
+        w.setText(String.valueOf(wrongs));
+    }
+
+    @Override
+    public void onBackPressed() {
+        DialogFragment dialog = new ExitDialog();
+        dialog.show(getSupportFragmentManager(), "Close");
+    }
+
+    @Override
+    public void onYesClick() {
+        finish();
+    }
+
+    @Override
+    public void onNoClick() {
+    }
+
+    @Override
+    public void onExitClick() {
+        finish();
     }
 }

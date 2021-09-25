@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="PreferenceScreen" parent="Theme.MatteLab">
+        <item name="android:titleTextColor">@color/red_500</item>
+    </style>
+</resources>

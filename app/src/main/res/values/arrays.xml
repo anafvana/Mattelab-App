@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--This file contains only numeric, non-translatable arrays.
+String arrays that require translation are found under strings.xml-->
+<resources>
+    <string-array translatable="false" name="strarr_prefs_rounds">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+    </string-array>
+
+    <string-array name="arr_play_ops">
+        <item>2 + 5=2</item>
+        <item>6 - 5=1</item>
+        <item>10 / 2=5</item>
+        <item>2 * 6=12</item>
+        <item>3 + 7=10</item>
+        <item>8 * 3=24</item>
+        <item>21 / 3=7</item>
+        <item>18 - 6=12</item>
+        <item>20 / 4=5</item>
+        <item>15 / 5=3</item>
+        <item>9 - 4=5</item>
+        <item>18 + 4=22</item>
+        <item>6 * 5=30</item>
+        <item>16 - 10=6</item>
+    </string-array>
+</resources>

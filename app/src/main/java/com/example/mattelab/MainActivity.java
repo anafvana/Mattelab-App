@@ -1,8 +1,8 @@
 package com.example.mattelab;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,13 +10,12 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toolbar;
+
 
 import java.util.Locale;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Sets toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
-        setActionBar(toolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
         // Play button
         Button btn_play = findViewById(R.id.btn_main_play);
@@ -54,20 +54,16 @@ public class MainActivity extends AppCompatActivity {
         btn_pref.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                newActivityForResult(PreferencesActivity.class, 555);
+                newActivity(PreferencesActivity.class);
+                finish();
             }
         });
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == 555){
-            if(resultCode==RESULT_OK) {
-                recreate();
-            }
-        }
+    protected void onResume() {
+        super.onResume();
+        setAppLocale();
     }
 
     public void newActivity(Class c){
@@ -75,22 +71,18 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void newActivityForResult(Class c, int requestCode){
-        Intent intent = new Intent(this, c);
-        startActivityForResult(intent, requestCode);
-    }
-
     // Sets appLocale as the one previously chosen by the user
     public void setAppLocale() {
-        if (getSharedPreferences("PREFERENCE", MODE_PRIVATE).contains("LANG")) {
-            String countryCode = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getString("LANG", "");
-            Resources resources = getResources();
-            DisplayMetrics dm = resources.getDisplayMetrics();
-            Configuration conf = resources.getConfiguration();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String selectedLocale = preferences.getString("LANG", "");
 
-            if (!conf.locale.toString().equals(countryCode)) {
-                conf.setLocale(new Locale(countryCode));
-                getBaseContext().getResources().updateConfiguration(conf, dm);
+        if (selectedLocale != null) {
+            // If current locale is not the same as the one saved in preferences, change and recreate
+            if(!getResources().getConfiguration().locale.toString().equals(selectedLocale)){
+                Resources resources = getResources();
+                DisplayMetrics dm = resources.getDisplayMetrics();
+                Configuration conf = resources.getConfiguration();
+                conf.setLocale(new Locale(selectedLocale));
                 resources.updateConfiguration(conf, dm);
                 recreate();
             }
