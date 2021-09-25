@@ -72,6 +72,7 @@
                     android:textAlignment="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableTint="@color/red_800"
                     app:drawableEndCompat="@drawable/happy"/>
             </LinearLayout>
             <LinearLayout
@@ -92,6 +93,7 @@
                     android:textAlignment="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableTint="@color/red_800"
                     app:drawableEndCompat="@drawable/sad"
                     />
             </LinearLayout>
@@ -119,6 +121,7 @@
                     android:textAlignment="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableTint="@color/red_800"
                     app:drawableEndCompat="@drawable/yes"
                     />
             </LinearLayout>
@@ -140,6 +143,7 @@
                     android:textAlignment="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableTint="@color/red_800"
                     app:drawableEndCompat="@drawable/no"/>
             </LinearLayout>
         </LinearLayout>
