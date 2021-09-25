@@ -11,20 +11,23 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceManager;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EmptyStackException;
 import java.util.Objects;
 import java.util.Stack;
 
 public class PlayActivity extends AppCompatActivity implements ExitDialog.DialogClickListener, CompletedDialog.DialogClickListener, ErrorDialog.DialogClickListener {
-    int rounds = 5;
-    Stack<String[]> operations = new Stack<>();
+    int rounds = 5; // Number of rounds
+    Stack<String[]> operations = new Stack<>(); // Available operations
 
     String result; // Current operation's result
     String answer = ""; // Answer input by user
 
-    int rights = 0;
-    int wrongs = 0;
+    int rights = 0; // Number of correct answers given
+    int wrongs = 0; // Number of incorrect answer giver
+
+    /*------- OVERRIDES -------*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,7 +38,6 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_play);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
-
 
         // Adds listener for each of the number buttons
         for (int i = 0; i<=9; i++){
@@ -68,12 +70,62 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
             }
         });
 
+        // Loads external data
         setRounds();
         loadOperations();
         nextOperation();
         setScore();
     }
 
+    // Saves game data if instance is interrupted
+    @Override
+    protected void onSaveInstanceState (Bundle outState) {
+        super.onSaveInstanceState(outState);
+        TextView tv = (TextView) findViewById(R.id.txt_play_question);
+        String curQuest = tv.getText().toString();
+
+        outState.putString("INANSWER", answer);
+        outState.putString("OPANSWER", result);
+        outState.putString("OPQUEST", curQuest);
+        outState.putSerializable("OPERATIONS", operations);
+        outState.putInt("RIGHTS", rights);
+        outState.putInt("WRONGS", wrongs);
+        outState.putInt("ROUNDSLEFT", rounds);
+    }
+
+    // Restores current game data if instance is interrupted (ex: screen orientation changes)
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        //Reloads current operation data
+        answer = savedInstanceState.getString("INANSWER");
+        setAnswer();
+        result = savedInstanceState.getString("OPANSWER");
+        String question = savedInstanceState.getString("OPQUEST");
+        TextView txt = (TextView) findViewById(R.id.txt_play_question);
+        txt.setText(question);
+
+        //Reloads game data
+        operations = (Stack<String[]>) savedInstanceState.getSerializable("OPERATIONS");
+        rounds = savedInstanceState.getInt("ROUNDSLEFT");
+
+        //Reloads score
+        wrongs = savedInstanceState.getInt("WRONGS");
+        rights = savedInstanceState.getInt("RIGHTS");
+        setScore();
+    }
+
+    // Prevents exit (and loss of data) on back button press
+    @Override
+    public void onBackPressed() {
+        DialogFragment dialog = new ExitDialog();
+        dialog.show(getSupportFragmentManager(), "Close");
+    }
+
+    /*------- AUXILIARY METHODS -------*/
+
+    // Set number of rounds to be played based on preferences
     public void setRounds() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         try {
@@ -87,6 +139,7 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
         }
     }
 
+    // Loads operations from resources into array
     public void loadOperations() {
         String[] inOps = getResources().getStringArray(R.array.arr_play_ops);
         for (String inOp : inOps) {
@@ -95,6 +148,7 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
         }
     }
 
+    // Displays next operation (or an alert, if out of operations)
     public void nextOperation(){
         try {
             Collections.shuffle(operations);
@@ -105,7 +159,7 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
 
             result = op[1];
         } catch (EmptyStackException e){
-            DialogFragment noQuestDialog = new ErrorDialog();
+            DialogFragment noQuestDialog = new ErrorDialog(rights, wrongs);
             noQuestDialog.show(getSupportFragmentManager(), "NoQuestions");
         }
     }
@@ -113,9 +167,7 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
     // Adds selected digit to answer string
     public void addToAnswer(int nr){
         answer += nr;
-        TextView txt = (TextView) findViewById(R.id.txt_play_answer);
-        txt.setText(answer);
-        txt.setAlpha((float) 1);
+        setAnswer();
     }
 
     // Removes last digit from answer string
@@ -123,9 +175,14 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
         if (answer.length() > 0) {
             int max = answer.length() - 1;
             answer = answer.substring(0,max);
-            TextView txt = (TextView) findViewById(R.id.txt_play_answer);
-            txt.setText(answer);
+            setAnswer();
         }
+    }
+
+    public void setAnswer(){
+        TextView txt = (TextView) findViewById(R.id.txt_play_answer);
+        txt.setText(answer);
+        txt.setAlpha((float) 1);
     }
 
     // Checks if answer is correct
@@ -151,6 +208,7 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
         }
     }
 
+    // Puts current score values on screen
     public void setScore(){
         TextView r = (TextView) findViewById(R.id.txt_play_rights);
         r.setText(String.valueOf(rights));
@@ -159,12 +217,7 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
         w.setText(String.valueOf(wrongs));
     }
 
-    @Override
-    public void onBackPressed() {
-        DialogFragment dialog = new ExitDialog();
-        dialog.show(getSupportFragmentManager(), "Close");
-    }
-
+    // Updates statistics in persistent memory
     public void updateStats(){
         int gamesPlayed = getSharedPreferences("STATISTICS", MODE_PRIVATE).getInt("PLAYED", 0 );
         int gamesWithOver50Percent = getSharedPreferences("STATISTICS", MODE_PRIVATE).getInt("WON", 0);
@@ -185,6 +238,7 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
         getSharedPreferences("STATISTICS", MODE_PRIVATE).edit().putInt("WRONGOP",wrongOperations+wrongs).apply();
     }
 
+    /*------- DIALOG METHODS -------*/
     @Override
     public void onQuitClick() {
         finish();
