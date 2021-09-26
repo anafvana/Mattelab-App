@@ -1,6 +1,8 @@
 # DAVE3600 Apputvikling - Mappeeksamen1: Mattelab
 Simple Android application consisting of a Maths game for children, including statistics and customisable settings.
 
+Report available [in the resources folder, under raw](./app/src/main/res/raw/s344046_rapport.pdf).
+
 First deliverable assignment for DAVE3600 - App Development.
 
 ## Mappe 1 Apputvikling 2021
