@@ -99,7 +99,11 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
 
         //Reloads current operation data
         answer = savedInstanceState.getString("INANSWER");
-        setAnswer();
+        if (answer.isEmpty()) {
+            setEmptyAnswer();
+        } else {
+            setAnswer();
+        }
         result = savedInstanceState.getString("OPANSWER");
         String question = savedInstanceState.getString("OPQUEST");
         TextView txt = (TextView) findViewById(R.id.txt_play_question);
@@ -184,6 +188,12 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
         txt.setAlpha((float) 1);
     }
 
+    private void setEmptyAnswer(){
+        TextView txt = (TextView) findViewById(R.id.txt_play_answer);
+        txt.setText(R.string.str_play_answer);
+        txt.setAlpha((float) 0.5);
+    }
+
     // Checks if answer is correct
     private void checkAnswer(){
         if (answer.equals(result)) {
@@ -195,9 +205,7 @@ public class PlayActivity extends AppCompatActivity implements ExitDialog.Dialog
 
         if (rounds > 1) {
             answer = "";
-            TextView txt = (TextView) findViewById(R.id.txt_play_answer);
-            txt.setText(R.string.str_play_answer);
-            txt.setAlpha((float) 0.5);
+            setEmptyAnswer();
             rounds--;
             nextOperation();
         } else {
