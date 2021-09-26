@@ -2,6 +2,7 @@
 <resources>
     <dimen name="marg_300">7.5dp</dimen>
     <dimen name="marg_500">15dp</dimen>
+    <dimen name="marg_600">22.5dp</dimen>
     <dimen name="marg_700">30dp</dimen>
     <dimen name="txt_size_550">17.5sp</dimen>
     <dimen name="txt_size_600">20sp</dimen>
